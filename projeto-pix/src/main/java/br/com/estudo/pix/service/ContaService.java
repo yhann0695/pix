@@ -46,19 +46,26 @@ public class ContaService {
 		}
 	}
 
-    public void realizarTransferencia(Double valor, String numConta, OperacaoBancariaDto operacao) {
-		Conta contaOrigem = repository.findByNumConta(operacao.getNumContaOrigem());
-		Conta contaDestino = repository.findByNumConta(operacao.getNumContaDestino());
-		if(valor >= 0) {
-			contaOrigem.setValor(contaOrigem.getValor() - valor);
-			contaDestino.setValor(contaDestino.getValor() + valor);
-			repository.save(contaOrigem);
-			repository.save(contaDestino);
-		} else {
-			throw new ErrorException("Valor inválido");
-		}
-
+	public void realizarTransferencia(Double valor, String numConta) {
+		Conta conta = repository.findByNumConta(numConta);
+		realizarDeposito(conta.getNumConta(), valor);
 	}
+
+    // public void realizarTransferencia(Double valor, String numConta, OperacaoBancariaDto operacao) {
+	// 	Conta contaOrigem = repository.findByNumConta(operacao.getNumContaOrigem());
+	// 	Conta contaDestino = repository.findByNumConta(operacao.getNumContaDestino());
+	// 	if(valor >= 0) {
+	// 		contaOrigem.setValor(contaOrigem.getValor() - valor);
+	// 		contaDestino.setValor(contaDestino.getValor() + valor);
+	// 		repository.save(contaOrigem);
+	// 		repository.save(contaDestino);
+	// 	} else {
+	// 		throw new ErrorException("Valor inválido");
+	// 	}
+
+	// }
+
+	// --- Validações 
 
     private void verificarExistenciaCodigo(Long id) {
 		Optional<Conta> conta = repository.findById(id);

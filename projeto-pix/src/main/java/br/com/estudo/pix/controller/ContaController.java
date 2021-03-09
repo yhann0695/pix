@@ -38,9 +38,8 @@ public class ContaController {
     }
 
     @PutMapping("/transferencia/{codigo}")
-    public ResponseEntity<Void> realizarTransferencia(@PathVariable("codigo") String codigo,
-           @RequestBody OperacaoBancariaDto operacao, @RequestBody Conta conta) {
-        service.realizarTransferencia(conta.getValor(), conta.getNumConta(), operacao);
+    public ResponseEntity<Void> realizarTransferencia(@PathVariable("codigo") String codigo, @RequestBody Conta conta) {
+        service.realizarTransferencia(conta.getValor(), conta.getNumConta());
         return ResponseEntity.ok().build();
     }
 }
