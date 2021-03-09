@@ -12,7 +12,7 @@ public class OperacaoBancariaDto implements Serializable{
     private static final long serialVersionUID = 1L;
 
     private SelectedItemDto operacaoBancaria;
-    private String numContaOrigem;
-    private String numContaDestino;
+    private String numeroContaOrigem;
+	private String numeroContaDestino;
     private Double valor;
 }

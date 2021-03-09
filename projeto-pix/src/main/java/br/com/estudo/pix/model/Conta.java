@@ -32,6 +32,6 @@ public class Conta implements Serializable{
     private String numConta;
 
     @Column(name = "VL_CONTA")
-    private Double valor = 0.0;
+    private Double valor;
     
 }

@@ -5,13 +5,11 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import br.com.estudo.pix.model.Conta;
+import br.com.estudo.pix.model.Extrato;
 
 @Repository
-public interface IContaRepository extends JpaRepository<Conta, Long>{
-
-	Conta findByNumConta(String numeroConta);
-
-	Page<Conta> findByNumContaContainsIgnoreCase(Pageable paginacao, String filtro);
+public interface IExtratoRepository extends JpaRepository<Extrato, Long> {
+    
+    Page<Extrato> findByContaNumConta(Pageable paginacao, String filtro);
     
 }
