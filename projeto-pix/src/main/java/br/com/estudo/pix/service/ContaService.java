@@ -3,12 +3,15 @@ package br.com.estudo.pix.service;
 import javax.transaction.Transactional;
 
 import br.com.estudo.pix.dto.dto.ContaDto;
+import br.com.estudo.pix.exceptions.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.estudo.pix.dto.dto.OperacaoBancariaDto;
 import br.com.estudo.pix.model.Conta;
 import br.com.estudo.pix.repository.ContaRepository;
+
+import java.util.Optional;
 
 @Service
 public class ContaService {
@@ -72,5 +75,18 @@ public class ContaService {
 
 		return new ContaDto(contaSalva.getId(), contaSalva.getNumero());
     }
+
+	public ContaDto getConta(final Long id) {
+		Optional<Conta> contaOptional = contaRepository.findById(id);
+
+		if(contaOptional.isPresent()) {
+			Conta conta = contaOptional.get();
+			return new ContaDto(conta.getId(), conta.getNumero());
+		}
+
+//		throw NotFoundException
+
+		return null;
+	}
 
 }
