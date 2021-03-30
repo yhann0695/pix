@@ -3,15 +3,16 @@ package br.com.estudo.pix.enums;
 import lombok.Getter;
 import lombok.Setter;
 
-@Getter
-@Setter
 public enum OperacaoBancariaEnum {
 
 	DEPOSITO_DINHEIRO("DD", "Depósito de Dinheiro"),
 	FILA_SAQUE("FS", "Saque"),
 	FILA_TRANSFERENCIA("FT", "Transferência");
-
+    
+    @Getter @Setter
     private String codigo;
+
+    @Setter @Getter
     private String descricao;
 
     private OperacaoBancariaEnum(String codigo, String descricao) {
@@ -20,13 +21,13 @@ public enum OperacaoBancariaEnum {
     }
 
     public static OperacaoBancariaEnum recuperarEnum(String codigo) {
-        OperacaoBancariaEnum obe = null;
-        for (OperacaoBancariaEnum itemEnum : OperacaoBancariaEnum.values()) {
-            if (itemEnum.getCodigo().equalsIgnoreCase(codigo)) {
-                obe = itemEnum;
-            }
-        }
-        return obe;
+//        OperacaoBancariaEnum obe = null;
+//        for (OperacaoBancariaEnum itemEnum : OperacaoBancariaEnum.values()) {
+//            if (itemEnum.getCodigo().equalsIgnoreCase(codigo)) {
+//                obe = itemEnum;
+//            }
+//        }
+        return null;
     }
 }
 

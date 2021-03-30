@@ -1,4 +1,4 @@
-package br.com.estudo.pix.controller.dto;
+package br.com.estudo.pix.dto.dto;
 
 import java.io.Serializable;
 import java.util.Date;

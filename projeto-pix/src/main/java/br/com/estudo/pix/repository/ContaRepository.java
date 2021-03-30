@@ -8,10 +8,11 @@ import org.springframework.stereotype.Repository;
 import br.com.estudo.pix.model.Conta;
 
 @Repository
-public interface IContaRepository extends JpaRepository<Conta, Long>{
+public interface ContaRepository extends JpaRepository<Conta, Long>{
 
-	Conta findByNumConta(String numeroConta);
+//	Conta findByNumConta(String numeroConta);
 
-	Page<Conta> findByNumContaContainsIgnoreCase(Pageable paginacao, String filtro);
+//	Como não está sendo usado comentado
+//	Page<Conta> findByNumContaContainsIgnoreCase(Pageable paginacao, String filtro);
     
 }

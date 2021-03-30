@@ -1,30 +1,41 @@
 package br.com.estudo.pix.controller;
 
+import br.com.estudo.pix.dto.dto.ContaDto;
+import br.com.estudo.pix.service.ContaService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.estudo.pix.controller.dto.ExtratoDTO;
-import br.com.estudo.pix.controller.dto.PaginacaoDTO;
-import br.com.estudo.pix.service.ExtratoService;
-import io.swagger.annotations.ApiOperation;
+import java.net.URI;
 
 @RestController
-@RequestMapping(value = "/consumer")
+@RequestMapping(value = "/v1/contas")
 public class ContaController {
 
-	@Autowired
-	private ExtratoService extratoService;
+	//TODO
+	//ContaConntroller usando ExtratoService
+//	@Autowired
+//	private ExtratoService extratoService;
 
-	
-	@ApiOperation(value = "Endpoint que retorna os extratos paginado")
-	@PostMapping(value = "/consultar-paginadoE", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Page<ExtratoDTO>> consultarPaginadoExtrato(@RequestBody PaginacaoDTO<String> paginacaoDTO){
-		return ResponseEntity.ok(extratoService.consultarPaginadoExtrato(paginacaoDTO));
+	@Autowired
+	private ContaService contaService;
+
+
+	//TODO poderia ter deixado documenntacao pra depois
+//	@ApiOperation(value = "Endpoint que retorna os extratos paginado")
+	//TODO consulta não pode ser post
+//	@PostMapping(value = "/consultar-paginadoE", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+//	public ResponseEntity<Page<ExtratoDTO>> consultarPaginadoExtrato(@RequestBody PaginacaoDTO<String> paginacaoDTO){
+//		return ResponseEntity.ok(extratoService.consultarPaginadoExtrato(paginacaoDTO));
+//	}
+
+
+	//Na vidia real seria dados pessoais mas vamos deixar isso pra dpeois
+	@PostMapping
+	public ResponseEntity<ContaDto> criaConta() {
+		ContaDto dto = contaService.criaConta();
+		return ResponseEntity.created(URI.create("/v1/contas/" + dto.getId())).build();
 	}
 }
